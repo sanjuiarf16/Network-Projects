@@ -167,7 +167,7 @@ def get_country_from_ip(ip_address, cache={}):
         if ip_address.startswith(('192.168.', '10.', '172.', '127.', '169.254.')) or ip_address == '::1':
             return "Local/Private"
         
-        response = requests.get(f"http://ip-api.com/json/{ip_address}", timeout=5)
+        response = requests.get(f"https://ip-api.com/json/{ip_address}", timeout=5)
         if response.status_code == 200:
             data = response.json()
             country = data.get('country', 'Unknown')
@@ -175,7 +175,7 @@ def get_country_from_ip(ip_address, cache={}):
             return country
         else:
             return "Unknown"
-    except:
+    except Exception as e:
         return "Unknown"
 
 
